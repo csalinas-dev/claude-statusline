@@ -1,5 +1,7 @@
 # Claude Code status line
 
+Private repo: <https://github.com/csalinas-dev/claude-statusline>
+
 A one-row status line, pinned below the input box, that survives scrolling in
 fullscreen mode:
 
@@ -96,6 +98,31 @@ Right-justification reads the `COLUMNS` environment variable, which Claude Code
 sets before running the script (requires v2.1.153+; `tput cols` does not work,
 since output is captured rather than attached to the terminal). On a terminal
 too narrow to fit both halves, it falls back to a two-space separator.
+
+## Day to day
+
+Push a change:
+
+```bash
+cd ~/.claude
+git add -A          # safe here *only* because of the allowlist in .gitignore
+git commit -m "..."
+git push
+```
+
+Pick it up elsewhere:
+
+```bash
+cd ~/.claude
+git pull
+node install.mjs    # only needed when the settings keys themselves change
+```
+
+Because `~/.claude` is the repo root, `git status` runs against a directory
+that Claude Code is constantly writing to — transcripts, caches, daemon logs,
+session state. All of it is ignored, so the working tree reads as clean almost
+all the time. That's the intent, but it does mean "clean" tells you nothing
+about the rest of the directory, only about these five files.
 
 ## Files
 
