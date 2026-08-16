@@ -1,0 +1,14 @@
+# This repo lives directly inside ~/.claude, which also holds credentials,
+# prompt history, and full session transcripts. So: ignore EVERYTHING by
+# default, then re-allow only the files that belong to the status line.
+#
+# Never convert this to a blocklist. The allowlist is what guarantees a
+# stray `git add -A` can't publish .credentials.json, history.jsonl,
+# projects/, sessions/, or shell-snapshots/.
+*
+
+!.gitignore
+!README.md
+!install.mjs
+!statusline.mjs
+!session-activity.mjs
